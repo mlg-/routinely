@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621045738) do
+ActiveRecord::Schema.define(version: 20150622014320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "patterns", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.datetime "start_date",                 null: false
+    t.datetime "end_date"
+    t.boolean  "weekends",   default: false, null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title",       null: false
@@ -22,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150621045738) do
     t.integer  "pattern_id",  null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
